@@ -21,7 +21,7 @@ Worker & Scheduling how to schedule periodic tasks (ie scraping) integrated with
 # Installation
 - Install Selenium & Chromedriver - setup guide
 - Install Redis - setup guide
-- Create a virtual environment (optional) & install dependencies (required)
+- Create a virtual environment (optional) & install dependencies from requirements.txt (required)
 - Setup an account with DataStax
 - Create your first AstraDB and get API credentials
 - Use cassandra-driver to verify your connection to AstraDB
