@@ -1,14 +1,11 @@
 # FastAPI, Cassandra & Pydantic
+
 import os
 import pathlib
-
 from cassandra.cluster import Cluster
 from cassandra.auth import PlainTextAuthProvider
 from cassandra.cqlengine.connection import register_connection, set_default_connection
-
-
 from . import config
-
 
 settings = config.get_settings()
 
@@ -19,7 +16,13 @@ BASE_DIR = pathlib.Path(__file__).parent
 CLUSTER_BUNDLE = str(BASE_DIR / "ignored" / 'connect.zip')
 
 def get_cluster():
-    cloud_config= {
+    """
+    Creates and returns a Cassandra cluster object configured with the AstraDB credentials.
+
+    Returns:
+        Cluster: The configured Cassandra cluster object.
+    """
+    cloud_config = {
         'secure_connect_bundle': CLUSTER_BUNDLE
     }
     auth_provider = PlainTextAuthProvider(ASTRA_DB_CLIENT_ID, ASTRA_DB_CLIENT_SECRET)
@@ -28,6 +31,12 @@ def get_cluster():
 
 
 def get_session():
+    """
+    Creates and returns a Cassandra session connected to the cluster.
+
+    Returns:
+        Session: The connected Cassandra session.
+    """
     cluster = get_cluster()
     session = cluster.connect()
     register_connection(str(session), session=session)
