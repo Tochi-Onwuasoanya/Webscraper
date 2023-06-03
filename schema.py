@@ -1,39 +1,33 @@
-# Demo
-from uuid import UUID
-from typing import Optional, Any
-from pydantic import BaseModel, root_validator
+# This file defines two models (Product and ProductScrapeEvent) using the Cassandra Object Mapper (CQLengine) library.
+from cassandra.cqlengine import columns
+from cassandra.cqlengine.models import Model
 
-from . import utils
+data = {
+    "asin": "TESTING123D",
+    "title": "Mark 1adsf"
+}
 
-class ProductSchema(BaseModel):
-    asin: str
-    title: Optional[str]
+class Product(Model):
+    """
+    Represents a product in the 'scraper_app' keyspace.
+    """
 
+    __keyspace__ = "scraper_app"
+    asin = columns.Text(primary_key=True, required=True)
+    title = columns.Text()
+    brand = columns.Text()
+    price_str = columns.Text(default="-100")
+    country_of_origin = columns.Text()
 
-class ProductListSchema(BaseModel):
-    asin: str
-    title: Optional[str]
-    price_str: Optional[str]
-    brand: Optional[str]
-    country_of_origin: Optional[str]
+class ProductScrapeEvent(Model):
+    """
+    Represents a scrape event for a product in the 'scraper_app' keyspace.
+    """
 
-
-class ProductScrapeEventSchema(BaseModel):
-    uuid: UUID
-    asin: str
-    title: Optional[str]
-    price_str: Optional[str]
-
-
-class ProductScrapeEventDetailSchema(BaseModel):
-    asin: str
-    title: Optional[str]
-    price_str: Optional[str]
-    created: Optional[Any] = None
-    brand: Optional[str]
-    country_of_origin: Optional[str]
-
-    @root_validator(pre=True)
-    def extra_create_time_from_uuid(cls, values):
-        values['created'] = utils.uuid1_time_to_datetime(values['uuid'].time).timestamp()
-        return values       
+    __keyspace__ = "scraper_app"
+    uuid = columns.UUID(primary_key=True)
+    asin = columns.Text(index=True)
+    title = columns.Text()
+    brand = columns.Text()
+    country_of_origin = columns.Text()
+    price_str = columns.Text(default="-100")
