@@ -3,11 +3,11 @@ Webscrapper is a web application built with FastAPI and Celery that allows you t
 
 This project covers the following functionalities:
 
-Scraping: Scrapes and parses data from Amazon using Selenium and Requests HTML. Database schema can be modified to scrape nearly any website as well.
+- Scraping: Scrapes and parses data from Amazon using Selenium and Requests HTML. Database schema can be modified to scrape nearly any website as well.
 
-Data Models: Stores and validates data using the cassandra-driver, pydantic, and AstraDB. 
+- Data Models: Stores and validates data using the cassandra-driver, pydantic, and AstraDB. 
 
-Worker & Scheduling: Schedules periodic tasks, such as scraping, by integrating Celery with Redis and AstraDB.
+- Worker & Scheduling: Schedules periodic tasks, such as scraping, by integrating Celery with Redis and AstraDB.
 
 # Tools Used
 This project utilizes the following tools:
