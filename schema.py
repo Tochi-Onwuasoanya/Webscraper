@@ -1,4 +1,3 @@
-# This file defines two models (Product and ProductScrapeEvent) using the Cassandra Object Mapper (CQLengine) library.
 from cassandra.cqlengine import columns
 from cassandra.cqlengine.models import Model
 
