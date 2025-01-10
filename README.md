@@ -1,5 +1,5 @@
 # Webscraper
-Webscrapper is a web application built with FastAPI and Celery that allows you to scrape product data from Amazon. It uses Cassandra's AstraDB as the database and Redis as the message broker for Celery.
+Webscrapper is a tool built with FastAPI and Celery that allows you to scrape product data from Amazon. It uses Cassandra's AstraDB as the database and Redis as the message broker for Celery.
 
 This project covers the following functionalities:
 
